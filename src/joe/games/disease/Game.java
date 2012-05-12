@@ -17,6 +17,7 @@ public class Game {
 	private Thread clockSpace;
 	private Clock clock;
 	private boolean gameOver;
+	private boolean gameWon;
 	
 	private ArrayList<Enemy> enemies;
 	
@@ -29,6 +30,7 @@ public class Game {
 	 */
 	public Game(int width, int height, int time){
 		gameOver = false;
+		gameWon = false;
 		this.width = width;
 		this.height = height;
 		rand = new Random();
@@ -71,7 +73,24 @@ public class Game {
 		if(clock.getTime() == 0){
 			g.drawString("GAME OVER", width/2, height/2);
 			gameOver = true;
+		}else if(getSmilesLeft() == 0){
+			gameWon = true;
+			g.drawString("Level Passed", width/2, height/2);
 		}
+	}
+	
+	/**
+	 * returns the ammount of smiles on the board at the time
+	 * @return
+	 */
+	public int getSmilesLeft(){
+		int counter = 0;
+		for(int i=0; i<enemies.size(); i++){
+			if(enemies.get(i).isSmile()){
+				counter++;
+			}
+		}
+		return counter;
 	}
 	
 	/**
@@ -128,6 +147,20 @@ public class Game {
 	 */
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
+	}
+
+	/**
+	 * @return the gameWon
+	 */
+	public boolean isGameWon() {
+		return gameWon;
+	}
+
+	/**
+	 * @param gameWon the gameWon to set
+	 */
+	public void setGameWon(boolean gameWon) {
+		this.gameWon = gameWon;
 	}
 	
 }

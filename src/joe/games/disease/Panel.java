@@ -44,7 +44,7 @@ public class Panel extends JPanel implements Runnable{
 
 	@Override
 	public void run() {
-		while(!game.isGameOver()){
+		while((!game.isGameOver())&&(!game.isGameWon())){
 			repaint();
 			sleepThread(50);
 		}
