@@ -45,7 +45,7 @@ public class Game {
 	}
 	
 	/**
-	 * Moves the game on one step and renders it to the parsed graphics object
+	 * Moves the game on one frame step and renders it to the parsed graphics object
 	 * @param g
 	 * @param isMouseDown
 	 * @param mousex
@@ -60,6 +60,7 @@ public class Game {
 		g.fillRect(0, 0, width, height);
 		g.setColor(Color.WHITE);
 		g.drawString(""+clock.getTime(), 10, 10);
+		
 		for(int i=0; i<enemies.size(); i++){
 			if(enemies.get(i).isSmile()){
 				g.drawImage(images.getImage("smile"), enemies.get(i).getxPos(), enemies.get(i).getyPos(), null);
@@ -80,7 +81,7 @@ public class Game {
 	}
 	
 	/**
-	 * returns the ammount of smiles on the board at the time
+	 * returns the amount of smiles on the board at the time
 	 * @return
 	 */
 	public int getSmilesLeft(){

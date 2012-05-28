@@ -9,7 +9,7 @@ public class Window extends JFrame {
 		super("Simple Point Click Game");
 		this.setSize(width, height);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.add(new Panel(width, height));
+		this.add(new Panel(width, height, 50));
 		this.setVisible(true);
 	}
 }

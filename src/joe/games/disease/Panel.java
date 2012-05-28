@@ -18,11 +18,13 @@ public class Panel extends JPanel implements Runnable{
 	private boolean isMouseDown;
 	private int mousex;
 	private int mousey;
+	private long framerate;
 	
 	Game game;
 	Thread loop;
 	
-	public Panel(int width, int height){
+	public Panel(int width, int height, long framerate){
+		this.framerate = framerate;
 		isMouseDown = false;
 		image  = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		buffer = image.getGraphics();
@@ -38,15 +40,15 @@ public class Panel extends JPanel implements Runnable{
 	
 	@Override
 	public void paint(Graphics g){
-		game.tick(buffer, isMouseDown, mousex, mousey);
 		g.drawImage(image, 0, 0, this);
 	}
 
 	@Override
 	public void run() {
 		while((!game.isGameOver())&&(!game.isGameWon())){
+			game.tick(buffer, isMouseDown, mousex, mousey);
 			repaint();
-			sleepThread(50);
+			sleepThread(framerate);
 		}
 	}
 	
